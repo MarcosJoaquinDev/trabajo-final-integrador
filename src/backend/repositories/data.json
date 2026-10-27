@@ -1,0 +1,573 @@
+{
+  "restaurante": "El Muelle - Cantina Inclusiva",
+  "menu": [
+    {
+      "categoria": "Pastas",
+      "items": [
+        {
+          "nombre": "Sorrentinos",
+          "descripcion": "Jamón y Queso - Verdura - Calabaza",
+          "precio": 8500
+        },
+        {
+          "nombre": "Ravioles",
+          "descripcion": "Verdura - Ricotta y Nuez",
+          "precio": 8000
+        },
+        {
+          "nombre": "Canelones Verdura",
+          "precio": 8000
+        },
+        {
+          "nombre": "Tallarines",
+          "precio": 7000
+        },
+        {
+          "nombre": "Ñoquis",
+          "precio": 7000
+        }
+      ]
+    },
+    {
+      "categoria": "Salsas",
+      "items": [
+        {
+          "nombre": "Filetto",
+          "precio": 3500
+        },
+        {
+          "nombre": "Bolognesa",
+          "precio": 4500
+        },
+        {
+          "nombre": "Mixta",
+          "precio": 4000
+        },
+        {
+          "nombre": "Parisiene",
+          "precio": 5000
+        }
+      ]
+    },
+    {
+      "categoria": "De Mar",
+      "items": [
+        {
+          "nombre": "Filet a la Romana",
+          "precio": 11000
+        },
+        {
+          "nombre": "Rabas",
+          "precio": 16500
+        },
+        {
+          "nombre": "Papillot de Merluza",
+          "precio": 16500
+        }
+      ]
+    },
+    {
+      "categoria": "Empanadas",
+      "items": [
+        {
+          "nombre": "Carne a cuchillo",
+          "precio": 2500
+        },
+        {
+          "nombre": "Jamón y queso",
+          "precio": 2500
+        },
+        {
+          "nombre": "Pollo",
+          "precio": 2500
+        }
+      ]
+    },
+    {
+      "categoria": "Celiacos",
+      "items": [
+        {
+          "nombre": "Pastas",
+          "precio": 16500
+        },
+        {
+          "nombre": "Sandwiches",
+          "precio": null
+        },
+        {
+          "nombre": "Pizzeta con muzza",
+          "precio": 13500
+        },
+        {
+          "nombre": "Medialunas",
+          "precio": null
+        }
+      ]
+    },
+    {
+      "categoria": "Pizzas",
+      "items": [
+        {
+          "nombre": "Muzzarella",
+          "precios": {
+            "chica": 8000,
+            "grande": 12100
+          }
+        },
+        {
+          "nombre": "Especial",
+          "precios": {
+            "chica": 9000,
+            "grande": 16500
+          }
+        },
+        {
+          "nombre": "Anchoas",
+          "precios": {
+            "chica": 9000,
+            "grande": 16500
+          }
+        },
+        {
+          "nombre": "Napolitana",
+          "precios": {
+            "chica": 9000,
+            "grande": 16500
+          }
+        }
+      ]
+    },
+    {
+      "categoria": "Ensaladas",
+      "items": [
+        {
+          "nombre": "Lechuga y Tomate",
+          "precio": 5500
+        },
+        {
+          "nombre": "Mixta",
+          "precio": 5500
+        },
+        {
+          "nombre": "Completa",
+          "precio": 8000
+        },
+        {
+          "nombre": "Primavera",
+          "precio": 8500
+        },
+        {
+          "nombre": "Caesar",
+          "precio": 8500
+        }
+      ]
+    },
+    {
+      "categoria": "Nuestros Platos",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Pollo a la Pastora",
+          "descripcion": "Pechuga Rebozada c/ verduras - Jamón y queso - Salsa y Papas",
+          "precio": 16500
+        },
+        {
+          "nombre": "Lomo Wellington",
+          "descripcion": "Lomo en hojaldre con Jamón, Queso y verduras - Salsa Demi Glass y Papas",
+          "precio": 19000
+        },
+        {
+          "nombre": "Pollo Wellington",
+          "descripcion": "Pollo en hojaldre con Jamón, Queso y verduras - Salsa Demi Glass y Papas",
+          "precio": 15500
+        },
+        {
+          "nombre": "Ojo de Bife",
+          "descripcion": "Chuleta sin hueso con salsa y papas",
+          "precio": 16500
+        },
+        {
+          "nombre": "Lasagna de Zuchinis",
+          "precio": 11000
+        },
+        {
+          "nombre": "Pastel de Papas",
+          "precio": 11000
+        },
+        {
+          "nombre": "Bondiolita Agridulce",
+          "descripcion": "Bondiola de Cerdo con salsa de ciruelas",
+          "precio": 14500
+        }
+      ]
+    },
+    {
+      "categoria": "Hamburguesas",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Jamón y Queso",
+          "precio": 10000
+        },
+        {
+          "nombre": "Lechuga y Tomate",
+          "precio": 9000
+        },
+        {
+          "nombre": "Completa",
+          "descripcion": "Jamón - Queso - Lechuga - Tomate - Huevo",
+          "precio": 13500
+        },
+        {
+          "nombre": "Yegui",
+          "precio": 16500
+        }
+      ]
+    },
+    {
+      "categoria": "Milanesas (Carne)",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Sola",
+          "precio": 11000
+        },
+        {
+          "nombre": "Jamón y Queso",
+          "precio": 13500
+        },
+        {
+          "nombre": "Napolitana",
+          "precio": 16500
+        }
+      ]
+    },
+    {
+      "categoria": "Milanesas (Pollo)",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Sola",
+          "precio": 11000
+        },
+        {
+          "nombre": "Jamón y Queso",
+          "precio": 13500
+        },
+        {
+          "nombre": "Napolitana",
+          "precio": 16500
+        }
+      ]
+    },
+    {
+      "categoria": "Bondiolas",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "A la Ciruela",
+          "precio": 15500
+        },
+        {
+          "nombre": "A la Cerveza Negra",
+          "precio": 14500
+        },
+        {
+          "nombre": "A la Mostaza",
+          "precio": 13500
+        }
+      ]
+    },
+    {
+      "categoria": "Lomos (Sandwich)",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Jamón y Queso",
+          "precio": 16500
+        },
+        {
+          "nombre": "Lechuga y Tomate",
+          "precio": 14500
+        },
+        {
+          "nombre": "Completo",
+          "descripcion": "Jamón - Queso - Lechuga - Tomate - Huevo",
+          "precio": 20000
+        }
+      ]
+    },
+    {
+      "categoria": "Lomos (Medallón)",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Al Verdeo",
+          "precio": 14500
+        },
+        {
+          "nombre": "Al Champignon",
+          "precio": 18000
+        },
+        {
+          "nombre": "A la Mostaza",
+          "precio": 14500
+        },
+        {
+          "nombre": "Al Roquefort",
+          "precio": 18000
+        }
+      ]
+    },
+    {
+      "categoria": "Pollo (Pech-Muslo)",
+      "nota_guarnicion": "Todo con Fritas, Ensalada o Puré",
+      "items": [
+        {
+          "nombre": "Al Verdeo",
+          "precio": 11000
+        },
+        {
+          "nombre": "Al Champignon",
+          "precio": 15500
+        },
+        {
+          "nombre": "Al Ananá",
+          "precio": 13500
+        }
+      ]
+    },
+    {
+      "categoria": "Confiteria",
+      "items": [
+        {
+          "nombre": "Medialunas",
+          "precio": 1100
+        },
+        {
+          "nombre": "Medialunas J y Q",
+          "precio": 1500
+        },
+        {
+          "nombre": "Tostados Miga",
+          "precio": 4500
+        },
+        {
+          "nombre": "Tostado Primavera",
+          "precio": 5000
+        },
+        {
+          "nombre": "Especial Jamón y Queso",
+          "precio": null
+        },
+        {
+          "nombre": "Especial Crudo y Queso",
+          "precio": null
+        },
+        {
+          "nombre": "Alfajores Maicena",
+          "precio": 1700
+        },
+        {
+          "nombre": "Budines (Porción)",
+          "precio": 1700
+        },
+        {
+          "nombre": "Pasteles",
+          "precio": null
+        }
+      ]
+    },
+    {
+      "categoria": "Cafeteria",
+      "items": [
+        {
+          "nombre": "Café Jarrito",
+          "precio": 3000
+        },
+        {
+          "nombre": "Cortado Jarrito",
+          "precio": 3500
+        },
+        {
+          "nombre": "Café c/ Leche",
+          "precio": 4000
+        },
+        {
+          "nombre": "Té",
+          "precio": 1200
+        },
+        {
+          "nombre": "Té con Leche",
+          "precio": 1500
+        },
+        {
+          "nombre": "Submarino",
+          "precio": 4000
+        },
+        {
+          "nombre": "Chocolatada",
+          "precio": 3000
+        },
+        {
+          "nombre": "Licuados",
+          "precio": 4500
+        },
+        {
+          "nombre": "Exprimido (Vaso)",
+          "precio": 4000
+        }
+      ]
+    },
+    {
+      "categoria": "Postres",
+      "items": [
+        {
+          "nombre": "Copa de la Casa",
+          "precio": 5500
+        },
+        {
+          "nombre": "Flan",
+          "precio": 3500
+        },
+        {
+          "nombre": "Tiramisú",
+          "precio": null
+        },
+        {
+          "nombre": "Duraznos en Almíbar",
+          "precio": null
+        },
+        {
+          "nombre": "Helados (2 Bochas)",
+          "precio": null
+        },
+        {
+          "nombre": "Postre de Vainillas",
+          "precio": null
+        },
+        {
+          "nombre": "Adicional Dulce",
+          "precio": 1100,
+          "promocion": "Adicional 2 x $1500"
+        },
+        {
+          "nombre": "Adicional Crema",
+          "precio": 1100,
+          "promocion": "Adicional 2 x $1500"
+        },
+        {
+          "nombre": "Almendrado",
+          "precio": 3000
+        },
+        {
+          "nombre": "Ensalada de Fruta",
+          "precio": 4500
+        }
+      ]
+    },
+    {
+      "categoria": "Vinos",
+      "items": [
+        {
+          "nombre": "De la Casa Tinto",
+          "precio": 7500
+        },
+        {
+          "nombre": "Alma Mora Malbec",
+          "precio": 10500
+        },
+        {
+          "nombre": "Haroldo Malbec",
+          "precio": 10500
+        },
+        {
+          "nombre": "De la Casa Blanco",
+          "precio": 9000
+        },
+        {
+          "nombre": "Santa Julia Chenin",
+          "precio": null
+        },
+        {
+          "nombre": "De la Casa Blanco Dulce",
+          "precio": null
+        }
+      ]
+    },
+    {
+      "categoria": "Cervezas",
+      "items": [
+        {
+          "nombre": "Quilmes Litro",
+          "precio": 6000
+        },
+        {
+          "nombre": "Bramha Litro",
+          "precio": 6000
+        },
+        {
+          "nombre": "Stella Litro",
+          "precio": null
+        },
+        {
+          "nombre": "Lata Quilmes / Bramha",
+          "precio": 3500
+        },
+        {
+          "nombre": "Lata Sin TAC",
+          "precio": 4000
+        },
+        {
+          "nombre": "Corona 350",
+          "precio": null
+        },
+        {
+          "nombre": "Corona Sin Alcohol",
+          "precio": 4000
+        }
+      ]
+    },
+    {
+      "categoria": "Bebidas Sin Alcohol",
+      "items": [
+        {
+          "nombre": "Gaseosa Chica",
+          "precio": 3500
+        },
+        {
+          "nombre": "Agua Sin Gas Chica",
+          "precio": 2500
+        },
+        {
+          "nombre": "Agua Con Gas Chica",
+          "precio": 2500
+        },
+        {
+          "nombre": "Saborizada Chica",
+          "precio": 3500
+        },
+        {
+          "nombre": "Jugos 250",
+          "precio": 1000
+        },
+        {
+          "nombre": "Chocolatada 250",
+          "precio": 1000
+        },
+        {
+          "nombre": "Gaseosa Grande",
+          "precio": 5000
+        },
+        {
+          "nombre": "Agua Grande",
+          "precio": 4000
+        },
+        {
+          "nombre": "Saborizada Grande",
+          "precio": 5000
+        }
+      ]
+    }
+  ]
+}
