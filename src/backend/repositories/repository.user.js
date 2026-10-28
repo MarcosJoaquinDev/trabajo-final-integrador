@@ -33,6 +33,16 @@ class User {
     };
   }
 
+  // me falta buscarlo por email
+  static async getByEmail() {
+    return null;
+  }
+
+  // me falta login
+  async login(){
+    return null;
+  }
+
   async getById(id) {
     const doc = await this.collection.doc(id).get();
     if (!doc.exists) {
