@@ -1,5 +1,15 @@
 const jwt = require("jsonwebtoken");
 
+const ADMIN = process.env.ROL_ADMIN;
+
+function adminOnly(req, res, next) {
+    if (req.dataUser?.rol != ADMIN) {
+        return res.status(403).json({ error: "No tenés roles de administrador" });
+    }
+    next();
+}
+
+
 function middlewareToken(req, res, next) {
     const [tipo, token] = (req.headers.authorization ?? "").split(" ");
     
@@ -14,4 +24,4 @@ function middlewareToken(req, res, next) {
     }
 }
 
-module.exports = { middlewareToken }
+module.exports = { adminOnly,middlewareToken }
