@@ -12,16 +12,46 @@ function getAllUsers(userRol){
     return allUsers;
 }
 
-function getUserById(id){
-    return null
+async function getUserById(id){
+    const repositoryUser = new User();
+    return await repositoryUser.getById(id);
 }
 
-function updateUserById(id){
-    return null
+async function updateUserById(id, data){
+    const repositoryUser = new User();
+    const userFound = await repositoryUser.getById(id);
+    if (!userFound) {
+        return null;
+    }
+
+    const allowedFields = ["nombre", "email", "rol", "pass"];
+    const updateData = {};
+    allowedFields.forEach((field) => {
+        if (data[field] !== undefined) {
+            updateData[field] = data[field];
+        }
+    });
+
+    if (Object.keys(updateData).length === 0) {
+        const error = new Error("No hay campos válidos para actualizar");
+        error.status = 400;
+        throw error;
+    }
+
+    if (updateData.pass) {
+        updateData.pass = await encryptWord(updateData.pass);
+    }
+
+    return await repositoryUser.update(id, updateData);
 }
 
-function deleteUserById(id){
-    return null
+async function deleteUserById(id){
+    const repositoryUser = new User();
+    const userFound = await repositoryUser.getById(id);
+    if (!userFound) {
+        return null;
+    }
+    return await repositoryUser.delete(id);
 }
 
 async function findByEmail(email){
@@ -69,10 +99,14 @@ async function verifyUser(email,password) {
 }
 
 async function encryptWord(pass) {
-    const passwordHashed = await bcrypt.hash(clave, 10);
+    const passwordHashed = await bcrypt.hash(pass, 10);
     return passwordHashed;
 }
 
 module.exports = {
-    createUser, getAllUsers
+    createUser,
+    getAllUsers,
+    getUserById,
+    updateUserById,
+    deleteUserById
 }
