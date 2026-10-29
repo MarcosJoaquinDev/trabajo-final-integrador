@@ -1,4 +1,5 @@
 const { admin } = require('../lib/firebase');
+const bcrypt = require('bcryptjs');
 
 class User {
   constructor() {
@@ -33,14 +34,33 @@ class User {
     };
   }
 
-  // me falta buscarlo por email
-  static async getByEmail() {
-    return null;
+  static async getByEmail(email) {
+    const db = admin.firestore();
+    const snapshot = await db
+      .collection('users')
+      .where('email', '==', email)
+      .limit(1)
+      .get();
+    if (snapshot.empty) {
+      return null;
+    }
+    const doc = snapshot.docs[0];
+    return {
+      id: doc.id,
+      ...doc.data(),
+    };
   }
 
-  // me falta login
-  async login(){
-    return null;
+  async login(email, pass) {
+    const user = await User.getByEmail(email);
+    if (!user || !user.pass) {
+      return null;
+    }
+    const isValid = await bcrypt.compare(pass, user.pass);
+    if (!isValid) {
+      return null;
+    }
+    return user;
   }
 
   async getById(id) {
