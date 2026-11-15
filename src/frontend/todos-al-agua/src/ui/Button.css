@@ -1,0 +1,66 @@
+.home .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.home .btn:hover {
+  transform: translateY(-2px);
+}
+
+.home .btn:focus-visible {
+  outline: 3px solid var(--color-warning);
+  outline-offset: 3px;
+}
+
+.home .btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(0, 85, 165, 0.22);
+}
+
+.home .btn-primary:hover {
+  background: #004785;
+}
+
+.home .btn-light {
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 12px 28px rgba(0, 39, 77, 0.2);
+}
+
+.home .btn-light:hover {
+  background: var(--color-grey);
+}
+
+.home .btn-outline {
+  border-color: rgba(255, 255, 255, 0.65);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.home .btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.home .btn-block {
+  width: 100%;
+}
