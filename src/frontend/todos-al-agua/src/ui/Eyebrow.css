@@ -1,0 +1,22 @@
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.eyebrow--light {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-warning);
+  box-shadow: 0 0 0 5px rgba(249, 185, 52, 0.18);
+}
