@@ -10,6 +10,21 @@
   --color-danger: #C62828;
   --color-warning: #F9B934;
 
+  /* Colors - Cantina */
+  --color-cantina-espresso: #3b2a1e;
+  --color-cantina-brown: #6f4a2f;
+  --color-cantina-brown-dark: #4e321f;
+  --color-cantina-terracotta: #b85c38;
+  --color-cantina-gold: #d8a13c;
+  --color-cantina-ochre: #a66e12;
+  --color-cantina-teal: #3f6b73;
+  --color-cantina-cream: #f8f1e7;
+  --color-cantina-light: #fff8ee;
+  --color-cantina-sand: #eddfc9;
+  --color-cantina-paper: #fffbf5;
+  --color-cantina-muted: #7a6656;
+  --color-cantina-olive: #6c7a4a;
+
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;

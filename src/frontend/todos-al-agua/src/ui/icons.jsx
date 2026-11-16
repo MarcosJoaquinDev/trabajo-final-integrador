@@ -105,6 +105,57 @@ export function TrainingIcon() {
   );
 }
 
+export function PastaIcon() {
+  return (
+    <Icon>
+      <path d="M4 11h16" />
+      <path d="M5 11c0 4 3 7 7 7s7-3 7-7" />
+      <path d="M7 5c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1" />
+      <path d="M7 8c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1" />
+    </Icon>
+  );
+}
+
+export function FishIcon() {
+  return (
+    <Icon>
+      <path d="M4 12c3-4 8-6 12-5 2 .5 3.5 1.5 4.5 3-1 1.5-2.5 2.5-4.5 3-4 1-9-1-12-1Z" />
+      <path d="m20 10 2-2v8l-2-2" />
+      <circle cx="9" cy="11" r="0.9" fill="currentColor" stroke="none" />
+    </Icon>
+  );
+}
+
+export function PizzaIcon() {
+  return (
+    <Icon>
+      <path d="M12 3 3 20h18L12 3Z" />
+      <path d="M7 14h10" />
+      <circle cx="11" cy="10" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="9.5" cy="16" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="14.5" cy="16" r="0.9" fill="currentColor" stroke="none" />
+    </Icon>
+  );
+}
+
+export function LeafIcon() {
+  return (
+    <Icon>
+      <path d="M20 4c-8 0-14 4-14 10 0 3 2 5 5 5 6 0 9-7 9-15Z" />
+      <path d="M5 20c3-5 7-9 12-12" />
+    </Icon>
+  );
+}
+
+export function PlateIcon() {
+  return (
+    <Icon>
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="4" />
+    </Icon>
+  );
+}
+
 export function CheckCircleIcon() {
   return (
     <Icon strokeWidth="2">
