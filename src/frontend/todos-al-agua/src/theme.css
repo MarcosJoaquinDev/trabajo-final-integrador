@@ -25,6 +25,19 @@
   --color-cantina-muted: #7a6656;
   --color-cantina-olive: #6c7a4a;
 
+  /* Colors - Huerta */
+  --color-huerta-green: #3f6b4a;
+  --color-huerta-green-dark: #2c4d35;
+  --color-huerta-leaf: #7fa86b;
+  --color-huerta-olive: #6c7a4a;
+  --color-huerta-earth: #7a5a3a;
+  --color-huerta-earth-dark: #5b4229;
+  --color-huerta-cream: #f4f1e4;
+  --color-huerta-sand: #e6e0cc;
+  --color-huerta-paper: #fbfaf3;
+  --color-huerta-muted: #6a6f5a;
+  --color-huerta-gold: #d8a13c;
+
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;

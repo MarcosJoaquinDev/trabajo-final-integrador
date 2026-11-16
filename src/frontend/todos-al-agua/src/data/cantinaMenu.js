@@ -1,4 +1,5 @@
 import data from "./menu.json";
+import { formatPrice } from "../utils/formatPrice";
 
 export const cantinaName = data.restaurante;
 
@@ -39,14 +40,5 @@ export const featuredCategories = [
   },
 ];
 
-export function formatPrice(value) {
-  if (value === null || value === undefined) {
-    return "Consultar";
-  }
+export { formatPrice };
 
-  return new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-    maximumFractionDigits: 0,
-  }).format(value);
-}

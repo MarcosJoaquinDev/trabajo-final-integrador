@@ -26,7 +26,7 @@
 }
 
 @media (max-width: 1000px) {
-  :is(.home, .cantina) .split {
+  :is(.home, .cantina, .huerta) .split {
     grid-template-columns: 1fr;
   }
 }

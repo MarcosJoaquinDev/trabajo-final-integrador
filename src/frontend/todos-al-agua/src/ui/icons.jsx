@@ -172,3 +172,36 @@ export function StarIcon() {
     </Icon>
   );
 }
+
+export function SproutIcon() {
+  return (
+    <Icon>
+      <path d="M12 21v-7" />
+      <path d="M12 14c0-4 3-7 8-7 0 5-3 7-8 7Z" />
+      <path d="M12 16c0-3-2-5-6-5 0 4 2 5 6 5Z" />
+      <path d="M5 21h14" />
+    </Icon>
+  );
+}
+
+export function BasketIcon() {
+  return (
+    <Icon>
+      <path d="M4 10h16l-1.5 8a2 2 0 0 1-2 1.6H7.5a2 2 0 0 1-2-1.6L4 10Z" />
+      <path d="M8 10 11 5" />
+      <path d="M16 10 13 5" />
+      <path d="M8 14h8" />
+    </Icon>
+  );
+}
+
+export function StoreIcon() {
+  return (
+    <Icon>
+      <path d="M3 9h18l-1 3H4L3 9Z" />
+      <path d="M5 12v7h14v-7" />
+      <path d="M9 19v-4h6v4" />
+      <path d="M4 6h16" />
+    </Icon>
+  );
+}
