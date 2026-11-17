@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import "../theme.css";
 import "./Login.css";
 import Header from "../components/Header";
@@ -10,7 +10,6 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/cantina", label: "Cantina" },
   { href: "/huerta", label: "Huerta" },
-  { href: "/login", label: "Iniciar sesión" },
 ];
 
 function validate(values) {
@@ -33,6 +32,8 @@ function validate(values) {
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const registered = location.state?.registered;
   const [form, setForm] = useState({ email: "", password: "", remember: false });
   const [errors, setErrors] = useState({});
 
@@ -93,6 +94,12 @@ export default function Login() {
             <p className="login-card-subtitle">
               Ingresá tus datos para continuar.
             </p>
+
+            {registered && (
+              <p className="login-success" role="status">
+                ¡Registro exitoso! Iniciá sesión con tu cuenta.
+              </p>
+            )}
 
             <form className="login-form" onSubmit={handleSubmit} noValidate>
               <div className="login-field">

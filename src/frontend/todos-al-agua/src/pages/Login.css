@@ -136,6 +136,18 @@ body {
   color: #65717a;
 }
 
+.login .login-success {
+  margin-top: 20px;
+  padding: 12px 14px;
+  border: 1px solid rgba(63, 107, 74, 0.3);
+  border-radius: var(--radius-sm);
+  background: rgba(63, 107, 74, 0.1);
+  color: var(--color-huerta-green);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 .login-form {
   display: grid;
   gap: 20px;
@@ -153,6 +165,7 @@ body {
   color: #35434d;
 }
 
+.login-field input[type="text"],
 .login-field input[type="email"],
 .login-field input[type="password"] {
   width: 100%;
@@ -169,6 +182,7 @@ body {
     box-shadow 0.2s ease;
 }
 
+.login-field input[type="text"]:focus-visible,
 .login-field input[type="email"]:focus-visible,
 .login-field input[type="password"]:focus-visible {
   outline: none;

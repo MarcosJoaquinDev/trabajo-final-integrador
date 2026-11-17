@@ -9,9 +9,9 @@ import Footer from "../components/Footer";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "Nosotros" },
   { href: "/cantina", label: "Cantina" },
   { href: "/login", label: "Iniciar sesión" },
+  { href: "/registro", label: "Registrarse" },
 ];
 
 export default function Huerta() {

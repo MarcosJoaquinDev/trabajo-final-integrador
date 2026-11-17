@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/cantina", label: "Cantina" },
   { href: "/huerta", label: "Huerta" },
   { href: "/login", label: "Iniciar sesión" },
+  { href: "/registro", label: "Registrarse" },
 ];
 
 export default function AuthPlaceholder({ title, description }) {

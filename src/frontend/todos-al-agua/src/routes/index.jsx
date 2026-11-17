@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Cantina from "../pages/Cantina";
 import Huerta from "../pages/Huerta";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 import AuthPlaceholder from "../pages/AuthPlaceholder";
 
 const router = createBrowserRouter([
@@ -24,12 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/registro",
-    element: (
-      <AuthPlaceholder
-        title="Registrarse"
-        description="El formulario de registro estará disponible próximamente."
-      />
-    ),
+    element: <Register />,
   },
   {
     path: "/recuperar",
