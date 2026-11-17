@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import Home from "../pages/Home";
 import Cantina from "../pages/Cantina";
 import Huerta from "../pages/Huerta";
+import Login from "../pages/Login";
+import AuthPlaceholder from "../pages/AuthPlaceholder";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,28 @@ const router = createBrowserRouter([
   {
     path: "/huerta",
     element: <Huerta />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/registro",
+    element: (
+      <AuthPlaceholder
+        title="Registrarse"
+        description="El formulario de registro estará disponible próximamente."
+      />
+    ),
+  },
+  {
+    path: "/recuperar",
+    element: (
+      <AuthPlaceholder
+        title="Recuperar contraseña"
+        description="La recuperación de contraseña estará disponible próximamente."
+      />
+    ),
   },
 ]);
 

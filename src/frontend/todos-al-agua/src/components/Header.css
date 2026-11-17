@@ -42,9 +42,23 @@
   font-size: 14px;
 }
 
+.header-login {
+  display: none;
+  align-items: center;
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
 @media (max-width: 820px) {
   .home-nav {
     display: none;
+  }
+
+  .header-login {
+    display: inline-flex;
   }
 
   .header-inner {

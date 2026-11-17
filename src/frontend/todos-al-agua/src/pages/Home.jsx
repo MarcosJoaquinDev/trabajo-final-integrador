@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/about", label: "Nosotros" },
   { href: "/cantina", label: "Cantina" },
   { href: "/huerta", label: "Huerta" },
+  { href: "/login", label: "Iniciar sesión" },
 ];
 
 export default function Home() {

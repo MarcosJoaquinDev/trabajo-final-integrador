@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "Nosotros" },
   { href: "/huerta", label: "Huerta" },
+  { href: "/login", label: "Iniciar sesión" },
 ];
 
 export default function Cantina() {
