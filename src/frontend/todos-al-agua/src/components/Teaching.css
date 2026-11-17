@@ -1,0 +1,32 @@
+:is(.home, .cantina) .split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(0, 0.97fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.split-copy .text-subtitle {
+  max-width: 18ch;
+  margin-top: 12px;
+  font-size: clamp(28px, 3.3vw, 40px);
+  line-height: 1.13;
+  letter-spacing: -0.025em;
+  color: var(--color-surface);
+}
+
+.split-copy .text-body {
+  max-width: 56ch;
+  margin-top: 16px;
+  line-height: 1.7;
+  color: #54626b;
+}
+
+.split-copy .btn {
+  margin-top: 28px;
+}
+
+@media (max-width: 1000px) {
+  :is(.home, .cantina, .huerta) .split {
+    grid-template-columns: 1fr;
+  }
+}

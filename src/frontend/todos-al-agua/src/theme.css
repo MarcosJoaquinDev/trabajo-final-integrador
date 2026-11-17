@@ -1,0 +1,79 @@
+/* =========================================
+   1. VARIABLES GLOBALES (Design Tokens)
+   ========================================= */
+:root {
+  /* Colors */
+  --color-primary: #0055A5;
+  --color-background: #00A8E8;
+  --color-surface: #2F2F2F;
+  --color-grey: #EEEEEE;
+  --color-danger: #C62828;
+  --color-warning: #F9B934;
+
+  /* Colors - Cantina */
+  --color-cantina-espresso: #3b2a1e;
+  --color-cantina-brown: #6f4a2f;
+  --color-cantina-brown-dark: #4e321f;
+  --color-cantina-terracotta: #b85c38;
+  --color-cantina-gold: #d8a13c;
+  --color-cantina-ochre: #a66e12;
+  --color-cantina-teal: #3f6b73;
+  --color-cantina-cream: #f8f1e7;
+  --color-cantina-light: #fff8ee;
+  --color-cantina-sand: #eddfc9;
+  --color-cantina-paper: #fffbf5;
+  --color-cantina-muted: #7a6656;
+  --color-cantina-olive: #6c7a4a;
+
+  /* Colors - Huerta */
+  --color-huerta-green: #3f6b4a;
+  --color-huerta-green-dark: #2c4d35;
+  --color-huerta-leaf: #7fa86b;
+  --color-huerta-olive: #6c7a4a;
+  --color-huerta-earth: #7a5a3a;
+  --color-huerta-earth-dark: #5b4229;
+  --color-huerta-cream: #f4f1e4;
+  --color-huerta-sand: #e6e0cc;
+  --color-huerta-paper: #fbfaf3;
+  --color-huerta-muted: #6a6f5a;
+  --color-huerta-gold: #d8a13c;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Typography Base */
+  --font-family-base: 'Montserrat', sans-serif;
+}
+
+/* =========================================
+   2. REGLAS DE TIPOGRAFÍA
+   ========================================= */
+.text-title {
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--font-family-base);
+  color: var(--color-primary);
+}
+
+.text-subtitle {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--font-family-base);
+  color: var(--color-primary);
+}
+
+.text-body {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--font-family-base);
+  color: var(--color-primary);
+}

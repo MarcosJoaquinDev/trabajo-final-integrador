@@ -1,0 +1,82 @@
+.activity-card {
+  --accent: var(--color-primary);
+  --accent-soft: rgba(0, 85, 165, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid rgba(0, 85, 165, 0.08);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(0, 43, 84, 0.06);
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 168, 232, 0.35);
+  box-shadow: 0 24px 46px rgba(0, 43, 84, 0.12);
+}
+
+.activity-card--sky {
+  --accent: #0078a8;
+  --accent-soft: rgba(0, 168, 232, 0.14);
+}
+
+.activity-card--sun {
+  --accent: #9a6a00;
+  --accent-soft: rgba(249, 185, 52, 0.2);
+}
+
+.activity-card--coral {
+  --accent: #b23b2e;
+  --accent-soft: rgba(198, 40, 40, 0.1);
+}
+
+.activity-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.activity-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.activity-body {
+  flex: 1;
+}
+
+.activity-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-surface);
+}
+
+.activity-body p {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5a6871;
+}
+
+.activity-tag {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
