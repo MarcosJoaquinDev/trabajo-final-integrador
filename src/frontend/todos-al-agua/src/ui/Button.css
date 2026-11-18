@@ -1,4 +1,4 @@
-:is(.home, .cantina, .huerta) .btn {
+:is(.home, .cantina, .huerta, .login) .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -21,46 +21,46 @@
     box-shadow 0.2s ease;
 }
 
-:is(.home, .cantina, .huerta) .btn:hover {
+:is(.home, .cantina, .huerta, .login) .btn:hover {
   transform: translateY(-2px);
 }
 
-:is(.home, .cantina, .huerta) .btn:focus-visible {
+:is(.home, .cantina, .huerta, .login) .btn:focus-visible {
   outline: 3px solid var(--color-warning);
   outline-offset: 3px;
 }
 
-:is(.home, .cantina, .huerta) .btn-primary {
+:is(.home, .cantina, .huerta, .login) .btn-primary {
   background: var(--color-primary);
   color: #fff;
   box-shadow: 0 10px 24px rgba(0, 85, 165, 0.22);
 }
 
-:is(.home, .cantina, .huerta) .btn-primary:hover {
+:is(.home, .cantina, .huerta, .login) .btn-primary:hover {
   background: #004785;
 }
 
-:is(.home, .cantina, .huerta) .btn-light {
+:is(.home, .cantina, .huerta, .login) .btn-light {
   background: #fff;
   color: var(--color-primary);
   box-shadow: 0 12px 28px rgba(0, 39, 77, 0.2);
 }
 
-:is(.home, .cantina, .huerta) .btn-light:hover {
+:is(.home, .cantina, .huerta, .login) .btn-light:hover {
   background: var(--color-grey);
 }
 
-:is(.home, .cantina, .huerta) .btn-outline {
+:is(.home, .cantina, .huerta, .login) .btn-outline {
   border-color: rgba(255, 255, 255, 0.65);
   color: #fff;
   background: rgba(255, 255, 255, 0.06);
 }
 
-:is(.home, .cantina, .huerta) .btn-outline:hover {
+:is(.home, .cantina, .huerta, .login) .btn-outline:hover {
   border-color: #fff;
   background: rgba(255, 255, 255, 0.16);
 }
 
-:is(.home, .cantina, .huerta) .btn-block {
+:is(.home, .cantina, .huerta, .login) .btn-block {
   width: 100%;
 }

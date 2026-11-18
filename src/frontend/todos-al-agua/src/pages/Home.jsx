@@ -8,10 +8,10 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 const navLinks = [
-  { href: "#actividades", label: "Actividades" },
-  { href: "/about", label: "Nosotros" },
   { href: "/cantina", label: "Cantina" },
   { href: "/huerta", label: "Huerta" },
+  { href: "/login", label: "Iniciar sesión" },
+  { href: "/registro", label: "Registrarse" },
 ];
 
 export default function Home() {
