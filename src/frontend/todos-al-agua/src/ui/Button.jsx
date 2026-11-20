@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "./Button.css";
 
 export default function Button({
@@ -16,6 +17,14 @@ export default function Button({
   ]
     .filter(Boolean)
     .join(" ");
+
+  if (typeof href === "string" && href.startsWith("/")) {
+    return (
+      <Link className={classes} to={href} {...props}>
+        {children}
+      </Link>
+    );
+  }
 
   return (
     <a className={classes} href={href} {...props}>

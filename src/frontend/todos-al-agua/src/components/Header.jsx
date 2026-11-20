@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
+import { useAuth } from "../auth/AuthContext";
+import { visibleCta, visibleNavLinks } from "../utils/navLinks";
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 import "./Header.css";
@@ -8,17 +10,28 @@ export default function Header({
   cta = { href: "#contacto", label: "Inscribite" },
   logoHref = "#inicio",
 }) {
+  const { user, isAdmin, logout } = useAuth();
+  const visibleLinks = visibleNavLinks(links, user, isAdmin);
+  const headerCta = visibleCta(cta, user);
+
   return (
     <header className="home-header">
       <div className="container header-inner">
         <Logo href={logoHref} />
 
         <nav className="home-nav" aria-label="Secciones">
-          {links.map((link) =>
+          {visibleLinks.map((link) =>
             link.href.startsWith("/") ? (
-              <Link key={link.href} to={link.href}>
+              <NavLink
+                key={link.href}
+                to={link.href}
+                end={link.href === "/"}
+                className={({ isActive }) =>
+                  isActive ? "is-active" : undefined
+                }
+              >
                 {link.label}
-              </Link>
+              </NavLink>
             ) : (
               <a key={link.href} href={link.href}>
                 {link.label}
@@ -27,12 +40,22 @@ export default function Header({
           )}
         </nav>
 
-        <Link className="header-login" to="/login">
-          Iniciar sesión
-        </Link>
+        {user ? (
+          <button
+            className="header-login header-logout"
+            type="button"
+            onClick={logout}
+          >
+            Cerrar sesión
+          </button>
+        ) : (
+          <NavLink className="header-login" to="/login">
+            Iniciar sesión
+          </NavLink>
+        )}
 
-        <Button href={cta.href} className="header-cta">
-          {cta.label}
+        <Button href={headerCta.href} className="header-cta">
+          {headerCta.label}
         </Button>
       </div>
     </header>

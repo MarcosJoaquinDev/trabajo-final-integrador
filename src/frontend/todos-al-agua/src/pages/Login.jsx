@@ -5,6 +5,7 @@ import "./Login.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Logo from "../ui/Logo";
+import { useAuth } from "../auth/AuthContext";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -33,7 +34,9 @@ function validate(values) {
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, login, logout } = useAuth();
   const registered = location.state?.registered;
+  const needsAdmin = Boolean(location.state?.from) && user && user.rol !== "admin";
   const [form, setForm] = useState({ email: "", password: "", remember: false });
   const [errors, setErrors] = useState({});
 
@@ -57,7 +60,8 @@ export default function Login() {
       return;
     }
 
-    navigate("/");
+    login({ email: form.email.trim() });
+    navigate(location.state?.from ?? "/", { replace: true });
   }
 
   return (
@@ -94,6 +98,29 @@ export default function Login() {
             <p className="login-card-subtitle">
               Ingresá tus datos para continuar.
             </p>
+
+            {needsAdmin && (
+              <div className="login-notice" role="alert">
+                <p>
+                  Tu cuenta <strong>{user.email}</strong> no tiene permisos de
+                  administrador para acceder a esa sección.
+                </p>
+                <button
+                  className="btn btn-primary btn-block"
+                  type="button"
+                  onClick={logout}
+                >
+                  Cerrar sesión y usar otra cuenta
+                </button>
+              </div>
+            )}
+
+            {user?.rol === "admin" && !needsAdmin && (
+              <p className="login-success" role="status">
+                Ya iniciaste sesión como administrador.{" "}
+                <Link to="/admin">Ir al panel</Link>
+              </p>
+            )}
 
             {registered && (
               <p className="login-success" role="status">
