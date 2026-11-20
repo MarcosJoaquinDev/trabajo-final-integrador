@@ -1,8 +1,13 @@
 import { Link } from "react-router";
+import { useAuth } from "../auth/AuthContext";
+import { visibleNavLinks } from "../utils/navLinks";
 import { WavesIcon } from "../ui/icons";
 import "./Footer.css";
 
 export default function Footer({ links }) {
+  const { user, isAdmin } = useAuth();
+  const visibleLinks = visibleNavLinks(links, user, isAdmin);
+
   return (
     <footer className="home-footer">
       <div className="container footer-inner">
@@ -14,7 +19,7 @@ export default function Footer({ links }) {
         </p>
 
         <nav className="footer-nav" aria-label="Enlaces del pie">
-          {links.map((link) =>
+          {visibleLinks.map((link) =>
             link.href.startsWith("/") ? (
               <Link key={link.href} to={link.href}>
                 {link.label}

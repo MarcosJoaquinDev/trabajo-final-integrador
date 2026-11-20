@@ -249,6 +249,21 @@ body {
   text-decoration: underline;
 }
 
+.login-notice {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid rgba(198, 40, 40, 0.2);
+  border-radius: var(--radius-sm);
+  background: rgba(198, 40, 40, 0.07);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #7a2020;
+}
+
+.login-notice p {
+  margin-bottom: 12px;
+}
+
 .auth-placeholder {
   display: grid;
   justify-items: start;

@@ -1,4 +1,5 @@
-import { formatPrice, menu } from "../data/cantinaMenu";
+import { formatPrice } from "../data/cantinaMenu";
+import { useMenu } from "../data/menuContext";
 import SectionHeading from "../ui/SectionHeading";
 import "./MenuList.css";
 
@@ -18,6 +19,8 @@ function ItemPrice({ item }) {
 }
 
 export default function MenuList() {
+  const { menu } = useMenu();
+
   return (
     <section className="section section--soft" id="menu">
       <div className="container">
