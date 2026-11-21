@@ -1,14 +1,23 @@
 import { useAuth } from "../../auth/AuthContext";
+import {
+  ETIQUETAS_PERMISO,
+  PERMISOS,
+  ROLES,
+  permisosDeRol,
+} from "../../auth/permissions";
 import { useUsers } from "../../data/usersContext";
 
-const PERMISSIONS = {
-  admin: ["Ver usuarios", "Editar menú", "Acceso a /admin"],
-  usuario: ["Ver carta"],
-};
+const ROLES_DISPONIBLES = [
+  ROLES.ADMIN,
+  ROLES.CANTINA,
+  ROLES.HUERTA,
+  ROLES.USUARIO,
+];
 
 export default function UsersPanel() {
   const { users, updateRole } = useUsers();
-  const { user, logout } = useAuth();
+  const { user, hasPermission, logout } = useAuth();
+  const puedeEditarRoles = hasPermission(PERMISOS.EDITAR_ROLES);
 
   function handleRoleChange(id, nextRol) {
     const target = users.find((current) => current.id === id);
@@ -17,7 +26,7 @@ export default function UsersPanel() {
     const isCurrentUser =
       target?.email.toLowerCase() === user?.email?.toLowerCase();
 
-    if (isCurrentUser && nextRol !== "admin") {
+    if (isCurrentUser && !permisosDeRol(nextRol).includes(PERMISOS.ACCESO_ADMIN)) {
       logout();
     }
   }
@@ -26,8 +35,7 @@ export default function UsersPanel() {
     <section>
       <h2 className="admin-panel-title">Usuarios y permisos</h2>
       <p className="admin-panel-copy">
-        Listado de cuentas de demostración. Los permisos se derivan del rol
-        asignado.
+        Cada rol define a qué secciones puede acceder dentro del panel.
       </p>
 
       <div className="admin-table-wrap">
@@ -45,6 +53,7 @@ export default function UsersPanel() {
             {users.map((current) => {
               const isCurrentUser =
                 current.email.toLowerCase() === user?.email?.toLowerCase();
+              const permisos = permisosDeRol(current.rol);
 
               return (
                 <tr key={current.id}>
@@ -60,7 +69,7 @@ export default function UsersPanel() {
                   <td>
                     <span
                       className={
-                        current.rol === "admin"
+                        current.rol === ROLES.ADMIN
                           ? "admin-badge admin-badge--admin"
                           : "admin-badge"
                       }
@@ -70,23 +79,36 @@ export default function UsersPanel() {
                   </td>
                   <td>
                     <ul className="admin-permissions">
-                      {(PERMISSIONS[current.rol] ?? []).map((permission) => (
-                        <li key={permission}>{permission}</li>
-                      ))}
+                      {permisos.length ? (
+                        permisos.map((permission) => (
+                          <li key={permission}>
+                            {ETIQUETAS_PERMISO[permission] ?? permission}
+                          </li>
+                        ))
+                      ) : (
+                        <li>Sin permisos de panel</li>
+                      )}
                     </ul>
                   </td>
                   <td>
-                    <select
-                      className="admin-select"
-                      aria-label={`Rol de ${current.nombre}`}
-                      value={current.rol}
-                      onChange={(event) =>
-                        handleRoleChange(current.id, event.target.value)
-                      }
-                    >
-                      <option value="usuario">usuario</option>
-                      <option value="admin">admin</option>
-                    </select>
+                    {puedeEditarRoles ? (
+                      <select
+                        className="admin-select"
+                        aria-label={`Rol de ${current.nombre}`}
+                        value={current.rol}
+                        onChange={(event) =>
+                          handleRoleChange(current.id, event.target.value)
+                        }
+                      >
+                        {ROLES_DISPONIBLES.map((rol) => (
+                          <option key={rol} value={rol}>
+                            {rol}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <span className="admin-badge">Sin permiso</span>
+                    )}
                   </td>
                 </tr>
               );
@@ -96,8 +118,8 @@ export default function UsersPanel() {
       </div>
 
       <p className="admin-note">
-        Si cambiás tu propio rol a “usuario”, se cierra la sesión y volvés al
-        inicio de sesión, porque ya no tenés permisos para estar en el panel.
+        Si cambiás tu propio rol y perdés el acceso al panel, se cierra la
+        sesión automáticamente.
       </p>
     </section>
   );

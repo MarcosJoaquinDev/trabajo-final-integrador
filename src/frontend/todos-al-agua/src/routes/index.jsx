@@ -1,14 +1,19 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 import Home from "../pages/Home";
 import Cantina from "../pages/Cantina";
 import Huerta from "../pages/Huerta";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthPlaceholder from "../pages/AuthPlaceholder";
+import SinAcceso from "../pages/SinAcceso";
 import Admin from "../pages/Admin";
+import AdminIndex from "../pages/AdminIndex";
 import UsersPanel from "../components/admin/UsersPanel";
 import MenuPanel from "../components/admin/MenuPanel";
+import HuertaPanel from "../components/admin/HuertaPanel";
 import ProtectedRoute from "./ProtectedRoute";
+import GuestRoute from "./GuestRoute";
+import { PERMISOS } from "../auth/permissions";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +29,11 @@ const router = createBrowserRouter([
     element: <Huerta />,
   },
   {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/registro",
-    element: <Register />,
+    element: <GuestRoute />,
+    children: [
+      { path: "/login", element: <Login /> },
+      { path: "/registro", element: <Register /> },
+    ],
   },
   {
     path: "/recuperar",
@@ -41,15 +45,29 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/sin-acceso",
+    element: <SinAcceso />,
+  },
+  {
     path: "/admin",
-    element: <ProtectedRoute requiredRole="admin" />,
+    element: <ProtectedRoute requiredPermission={PERMISOS.ACCESO_ADMIN} />,
     children: [
       {
         element: <Admin />,
         children: [
-          { index: true, element: <Navigate to="/admin/usuarios" replace /> },
-          { path: "usuarios", element: <UsersPanel /> },
-          { path: "menu", element: <MenuPanel /> },
+          { index: true, element: <AdminIndex /> },
+          {
+            element: <ProtectedRoute requiredPermission={PERMISOS.VER_USUARIOS} />,
+            children: [{ path: "usuarios", element: <UsersPanel /> }],
+          },
+          {
+            element: <ProtectedRoute requiredPermission={PERMISOS.EDITAR_MENU} />,
+            children: [{ path: "menu", element: <MenuPanel /> }],
+          },
+          {
+            element: <ProtectedRoute requiredPermission={PERMISOS.EDITAR_HUERTA} />,
+            children: [{ path: "huerta", element: <HuertaPanel /> }],
+          },
         ],
       },
     ],

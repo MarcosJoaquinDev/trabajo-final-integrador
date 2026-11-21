@@ -192,7 +192,10 @@ export default function Login() {
             </form>
 
             <p className="login-register">
-              ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
+              ¿No tenés cuenta?{" "}
+              <Link to="/registro" state={location.state}>
+                Registrate
+              </Link>
             </p>
           </section>
         </div>

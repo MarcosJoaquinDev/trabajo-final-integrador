@@ -10,8 +10,12 @@ export default function Header({
   cta = { href: "#contacto", label: "Inscribite" },
   logoHref = "#inicio",
 }) {
-  const { user, isAdmin, logout } = useAuth();
-  const visibleLinks = visibleNavLinks(links, user, isAdmin);
+  const { user, hasPermission, logout } = useAuth();
+  const visibleLinks = visibleNavLinks(
+    links,
+    user,
+    hasPermission("acceso_admin"),
+  );
   const headerCta = visibleCta(cta, user);
 
   return (

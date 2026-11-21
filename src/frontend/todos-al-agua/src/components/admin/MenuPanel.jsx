@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth } from "../../auth/AuthContext";
+import { PERMISOS } from "../../auth/permissions";
 import { useMenu } from "../../data/menuContext";
 import menuData from "../../data/menu.json";
 
@@ -71,6 +73,8 @@ function normalizeForSave(menu) {
 
 export default function MenuPanel() {
   const { menu, saveMenu, resetMenu } = useMenu();
+  const { hasPermission } = useAuth();
+  const puedeEditar = hasPermission(PERMISOS.EDITAR_MENU);
   const [draft, setDraft] = useState(() => clone(menu));
   const [activeCategory, setActiveCategory] = useState(0);
   const [message, setMessage] = useState(null);
@@ -214,6 +218,14 @@ export default function MenuPanel() {
         </p>
       )}
 
+      {!puedeEditar && (
+        <p className="admin-note">
+          Tu cuenta no tiene permiso <code>editar_menu</code>. Podés consultar
+          la carta, pero no modificarla.
+        </p>
+      )}
+
+      <fieldset className="admin-readonly-fieldset" disabled={!puedeEditar}>
       <div className="admin-menu-grid">
         <aside className="admin-category-list" aria-label="Categorías del menú">
           <p className="admin-sidebar-label">Categorías</p>
@@ -451,6 +463,7 @@ export default function MenuPanel() {
           Restablecer menú original
         </button>
       </div>
+      </fieldset>
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import "../theme.css";
 import "./Login.css";
 import "./Register.css";
@@ -45,6 +45,7 @@ function validate(values) {
 
 export default function Register() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -70,7 +71,9 @@ export default function Register() {
       return;
     }
 
-    navigate("/login", { state: { registered: true } });
+    navigate("/login", {
+      state: { registered: true, from: location.state?.from },
+    });
   }
 
   return (
@@ -199,7 +202,10 @@ export default function Register() {
             </form>
 
             <p className="login-register">
-              ¿Ya tenés cuenta? <Link to="/login">Iniciá sesión</Link>
+              ¿Ya tenés cuenta?{" "}
+              <Link to="/login" state={location.state}>
+                Iniciá sesión
+              </Link>
             </p>
           </section>
         </div>

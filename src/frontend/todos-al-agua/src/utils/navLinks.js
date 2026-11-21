@@ -1,11 +1,11 @@
 const AUTH_LINKS = ["/login", "/registro"];
 
-export function visibleNavLinks(links, user, isAdmin) {
+export function visibleNavLinks(links, user, canAccessAdmin) {
   const filtered = user
     ? links.filter((link) => !AUTH_LINKS.includes(link.href))
     : links;
 
-  if (!isAdmin) {
+  if (!canAccessAdmin) {
     return filtered;
   }
 
