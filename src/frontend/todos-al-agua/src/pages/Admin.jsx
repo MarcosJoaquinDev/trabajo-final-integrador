@@ -20,7 +20,7 @@ const TABS = [
 ];
 
 export default function Admin() {
-  const { user, hasPermission, logout } = useAuth();
+  const { user, hasPermission } = useAuth();
   const visibleTabs = TABS.filter((tab) => hasPermission(tab.permiso));
 
   return (
@@ -41,9 +41,6 @@ export default function Admin() {
                 Sesión de <strong>{user?.email}</strong>
               </p>
             </div>
-            <button className="btn btn-primary" type="button" onClick={logout}>
-              Cerrar sesión
-            </button>
           </div>
 
           <nav className="admin-tabs" aria-label="Secciones del panel">

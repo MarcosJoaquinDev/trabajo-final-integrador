@@ -60,18 +60,23 @@
 
 .admin-tabs {
   display: flex;
+  flex-wrap: nowrap;
   gap: 8px;
   margin-bottom: 16px;
   border-bottom: 1px solid rgba(111, 74, 47, 0.14);
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .admin-tab {
+  flex: 0 0 auto;
   padding: 12px 20px;
   border-bottom: 3px solid transparent;
   color: var(--color-cantina-muted);
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .admin-tab:hover {
@@ -102,6 +107,50 @@
   font-size: 14px;
   line-height: 1.6;
   color: var(--color-cantina-muted);
+}
+
+.admin-user-cards {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.admin-user-card {
+  padding: 16px;
+  border: 1px solid rgba(111, 74, 47, 0.14);
+  border-radius: var(--radius-md);
+  background: var(--color-cantina-light);
+}
+
+.admin-user-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.admin-user-card-head strong {
+  color: var(--color-cantina-espresso);
+  font-size: 15px;
+}
+
+.admin-user-card-vos {
+  margin-left: 8px;
+}
+
+.admin-user-card-email {
+  margin: 8px 0 12px;
+  color: var(--color-cantina-muted);
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.admin-user-card .admin-permissions {
+  margin-bottom: 14px;
+}
+
+.admin-user-card-role {
+  display: block;
 }
 
 .admin-note {
@@ -274,7 +323,7 @@
 
 .admin-category-list {
   position: sticky;
-  top: 96px;
+  top: 84px;
   padding: 14px;
   border: 1px solid rgba(111, 74, 47, 0.14);
   border-radius: var(--radius-md);
@@ -298,6 +347,11 @@
   overflow-y: auto;
   margin-bottom: 12px;
   padding-right: 4px;
+  scroll-behavior: smooth;
+}
+
+.admin-category-item {
+  scroll-margin-inline: 24px;
 }
 
 .admin-category-item {
@@ -447,6 +501,44 @@
   color: #fff;
 }
 
+.admin-dish-cards {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-dish-card {
+  padding: 14px;
+  border: 1px solid rgba(111, 74, 47, 0.14);
+  border-radius: var(--radius-md);
+  background: var(--color-cantina-light);
+}
+
+.admin-dish-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.admin-dish-card-head .admin-input {
+  font-weight: 600;
+}
+
+.admin-dish-card-field {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.admin-dish-card-price {
+  padding-top: 10px;
+  border-top: 1px solid rgba(111, 74, 47, 0.1);
+}
+
+.admin-dish-card-price .admin-price-pair {
+  max-width: 260px;
+}
+
 .admin-empty {
   margin: 0;
   color: var(--color-cantina-muted);
@@ -502,7 +594,7 @@
 
 @media (max-width: 900px) {
   .admin-menu-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .admin-category-list {
@@ -513,11 +605,18 @@
     flex-direction: row;
     max-height: none;
     overflow-x: auto;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    background: linear-gradient(
+      to right,
+      var(--color-cantina-light) 0%,
+      transparent 18px
+    );
   }
 
   .admin-category-item {
-    flex: 0 0 auto;
+    flex: 0 0 150px;
+    width: auto;
     min-width: 150px;
   }
 }
@@ -547,5 +646,41 @@
 
   .admin-items-head {
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-heading h1 {
+    font-size: 28px;
+  }
+
+  .admin-table-desktop {
+    display: none;
+  }
+
+  .admin-user-cards {
+    display: grid;
+  }
+
+  .admin-panel-title {
+    font-size: 20px;
+  }
+
+  .admin-items-table-wrap {
+    display: none;
+  }
+
+  .admin-dish-cards {
+    display: flex;
+  }
+
+  .admin-menu-stats {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-menu-stats {
+    display: none;
   }
 }

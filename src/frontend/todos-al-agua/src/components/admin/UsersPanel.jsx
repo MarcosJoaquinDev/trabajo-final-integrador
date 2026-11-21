@@ -38,7 +38,7 @@ export default function UsersPanel() {
         Cada rol define a qué secciones puede acceder dentro del panel.
       </p>
 
-      <div className="admin-table-wrap">
+      <div className="admin-table-wrap admin-table-desktop">
         <table className="admin-table">
           <thead>
             <tr>
@@ -115,6 +115,72 @@ export default function UsersPanel() {
             })}
           </tbody>
         </table>
+      </div>
+
+      <div className="admin-user-cards">
+        {users.map((current) => {
+          const isCurrentUser =
+            current.email.toLowerCase() === user?.email?.toLowerCase();
+          const permisos = permisosDeRol(current.rol);
+
+          return (
+            <article className="admin-user-card" key={current.id}>
+              <div className="admin-user-card-head">
+                <div>
+                  <strong>{current.nombre}</strong>
+                  {isCurrentUser && (
+                    <span className="admin-badge admin-user-card-vos">Vos</span>
+                  )}
+                </div>
+                <span
+                  className={
+                    current.rol === ROLES.ADMIN
+                      ? "admin-badge admin-badge--admin"
+                      : "admin-badge"
+                  }
+                >
+                  {current.rol}
+                </span>
+              </div>
+
+              <p className="admin-user-card-email">{current.email}</p>
+
+              <ul className="admin-permissions">
+                {permisos.length ? (
+                  permisos.map((permission) => (
+                    <li key={permission}>
+                      {ETIQUETAS_PERMISO[permission] ?? permission}
+                    </li>
+                  ))
+                ) : (
+                  <li>Sin permisos de panel</li>
+                )}
+              </ul>
+
+              <label className="admin-user-card-role">
+                <span className="admin-field-label">Cambiar rol</span>
+                {puedeEditarRoles ? (
+                  <select
+                    className="admin-select"
+                    aria-label={`Rol de ${current.nombre}`}
+                    value={current.rol}
+                    onChange={(event) =>
+                      handleRoleChange(current.id, event.target.value)
+                    }
+                  >
+                    {ROLES_DISPONIBLES.map((rol) => (
+                      <option key={rol} value={rol}>
+                        {rol}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <span className="admin-badge">Sin permiso</span>
+                )}
+              </label>
+            </article>
+          );
+        })}
       </div>
 
       <p className="admin-note">
