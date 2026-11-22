@@ -1,44 +1,47 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { permisosDeRol, rolDesdeEmail } from "./permissions";
-import { useUsers } from "../data/usersContext";
+import { getToken, setToken, apiAuth } from "../api/client";
 
-const STORAGE_KEY = "todos-al-agua.auth";
-
-function readStoredUser() {
+function userFromToken(token) {
+  if (!token) return null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : null;
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return { email: payload.email, rol: payload.rol, id: payload.id };
   } catch {
     return null;
   }
 }
 
 export default function AuthProvider({ children }) {
-  const { users } = useUsers();
-  const [user, setUser] = useState(readStoredUser);
+  const [user, setUser] = useState(() => userFromToken(getToken()));
+  const [loading, setLoading] = useState(false);
 
-  const login = useCallback(
-    (userData) => {
-      const email = (userData.email ?? "").trim();
-      const matched = users.find(
-        (current) => current.email.toLowerCase() === email.toLowerCase(),
-      );
-      const nextUser = {
-        ...userData,
+  useEffect(() => {
+    // Si el token venció o es inválido, limpiamos la sesión.
+    if (getToken() && !user) {
+      setToken(null);
+    }
+  }, [user]);
+
+  const login = useCallback(async ({ email, password }) => {
+    setLoading(true);
+    try {
+      const { token } = await apiAuth.login(email, password);
+      setToken(token);
+      const nextUser = userFromToken(token) ?? {
         email,
-        rol: matched?.rol ?? rolDesdeEmail(email),
+        rol: rolDesdeEmail(email),
       };
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextUser));
       setUser(nextUser);
       return nextUser;
-    },
-    [users],
-  );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY);
+    setToken(null);
     setUser(null);
   }, []);
 
@@ -58,8 +61,9 @@ export default function AuthProvider({ children }) {
       hasPermission,
       login,
       logout,
+      loading,
     }),
-    [user, permissions, hasPermission, login, logout],
+    [user, permissions, hasPermission, login, logout, loading],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

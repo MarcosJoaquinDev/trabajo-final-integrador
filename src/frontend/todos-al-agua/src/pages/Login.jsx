@@ -39,6 +39,7 @@ export default function Login() {
   const needsAdmin = Boolean(location.state?.from) && user && user.rol !== "admin";
   const [form, setForm] = useState({ email: "", password: "", remember: false });
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -50,7 +51,7 @@ export default function Login() {
     setErrors((current) => ({ ...current, [name]: "" }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const nextErrors = validate(form);
@@ -60,8 +61,16 @@ export default function Login() {
       return;
     }
 
-    login({ email: form.email.trim() });
-    navigate(location.state?.from ?? "/", { replace: true });
+    setSubmitting(true);
+    setErrors({});
+    try {
+      await login({ email: form.email.trim(), password: form.password });
+      navigate(location.state?.from ?? "/", { replace: true });
+    } catch (error) {
+      setErrors({ general: error.message });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -128,6 +137,12 @@ export default function Login() {
               </p>
             )}
 
+            {errors.general && (
+              <p className="login-error" role="alert" style={{ marginBottom: 16 }}>
+                {errors.general}
+              </p>
+            )}
+
             <form className="login-form" onSubmit={handleSubmit} noValidate>
               <div className="login-field">
                 <label htmlFor="login-email">Email</label>
@@ -186,8 +201,8 @@ export default function Login() {
                 </Link>
               </div>
 
-              <button className="btn btn-primary btn-block" type="submit">
-                Ingresar
+              <button className="btn btn-primary btn-block" type="submit" disabled={submitting}>
+                {submitting ? "Ingresando..." : "Ingresar"}
               </button>
             </form>
 

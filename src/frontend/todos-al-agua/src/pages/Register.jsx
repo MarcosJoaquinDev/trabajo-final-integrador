@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiAuth } from "../api/client";
 import { Link, useLocation, useNavigate } from "react-router";
 import "../theme.css";
 import "./Login.css";
@@ -53,6 +54,7 @@ export default function Register() {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -61,7 +63,7 @@ export default function Register() {
     setErrors((current) => ({ ...current, [name]: "" }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const nextErrors = validate(form);
@@ -71,9 +73,18 @@ export default function Register() {
       return;
     }
 
-    navigate("/login", {
-      state: { registered: true, from: location.state?.from },
-    });
+    setSubmitting(true);
+    setErrors({});
+    try {
+      await apiAuth.register(form.name.trim(), form.email.trim(), form.password);
+      navigate("/login", {
+        state: { registered: true, from: location.state?.from },
+      });
+    } catch (error) {
+      setErrors({ general: error.message });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -110,6 +121,12 @@ export default function Register() {
             <p className="login-card-subtitle">
               Completá tus datos para registrarte.
             </p>
+
+            {errors.general && (
+              <p className="login-error" role="alert" style={{ marginBottom: 16 }}>
+                {errors.general}
+              </p>
+            )}
 
             <form className="login-form register-form" onSubmit={handleSubmit} noValidate>
               <div className="login-field">
@@ -196,8 +213,8 @@ export default function Register() {
                 )}
               </div>
 
-              <button className="btn btn-primary btn-block" type="submit">
-                Crear cuenta
+              <button className="btn btn-primary btn-block" type="submit" disabled={submitting}>
+                {submitting ? "Creando cuenta..." : "Crear cuenta"}
               </button>
             </form>
 

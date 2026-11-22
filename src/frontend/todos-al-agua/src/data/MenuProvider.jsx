@@ -1,39 +1,52 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { MenuContext } from "./menuContext";
 import menuData from "./menu.json";
+import { apiMenu } from "../api/client";
 
-const STORAGE_KEY = "todos-al-agua.menu";
 const ORIGINAL_MENU = menuData.menu;
 
-function readStoredMenu() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      return ORIGINAL_MENU;
-    }
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : ORIGINAL_MENU;
-  } catch {
-    return ORIGINAL_MENU;
-  }
-}
-
 export default function MenuProvider({ children }) {
-  const [menu, setMenu] = useState(readStoredMenu);
+  const [menu, setMenu] = useState(ORIGINAL_MENU);
+  const [loading, setLoading] = useState(true);
 
-  const saveMenu = useCallback((nextMenu) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextMenu));
+  useEffect(() => {
+    let active = true;
+    apiMenu
+      .getAll()
+      .then((data) => {
+        if (active && Array.isArray(data) && data.length) {
+          setMenu(data);
+        }
+      })
+      .catch(() => {
+        // Sin backend, se mantiene el menú local (modo fallback).
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const saveMenu = useCallback(async (nextMenu) => {
     setMenu(nextMenu);
+    try {
+      if (nextMenu[0]?.id) {
+        await Promise.all(nextMenu.map((c) => apiMenu.update(c.id, c)));
+      }
+    } catch (error) {
+      console.error("No se pudo guardar el menú en el backend:", error.message);
+    }
   }, []);
 
   const resetMenu = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY);
     setMenu(ORIGINAL_MENU);
   }, []);
 
   const value = useMemo(
-    () => ({ menu, saveMenu, resetMenu }),
-    [menu, saveMenu, resetMenu],
+    () => ({ menu, saveMenu, resetMenu, loading }),
+    [menu, saveMenu, resetMenu, loading],
   );
 
   return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
