@@ -1,10 +1,9 @@
 import { useCallback, useMemo, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import { permisosDeRol, rolDesdeEmail } from "./permissions";
 import { useUsers } from "../data/usersContext";
 
 const STORAGE_KEY = "todos-al-agua.auth";
-const ADMIN_ROLE = "admin";
-const USER_ROLE = "usuario";
 
 function readStoredUser() {
   try {
@@ -25,13 +24,10 @@ export default function AuthProvider({ children }) {
       const matched = users.find(
         (current) => current.email.toLowerCase() === email.toLowerCase(),
       );
-      const inferredRole = email.toLowerCase().includes(ADMIN_ROLE)
-        ? ADMIN_ROLE
-        : USER_ROLE;
       const nextUser = {
         ...userData,
         email,
-        rol: matched?.rol ?? inferredRole,
+        rol: matched?.rol ?? rolDesdeEmail(email),
       };
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify(nextUser));
@@ -46,15 +42,24 @@ export default function AuthProvider({ children }) {
     setUser(null);
   }, []);
 
+  const permissions = useMemo(() => permisosDeRol(user?.rol), [user?.rol]);
+
+  const hasPermission = useCallback(
+    (permission) => permissions.includes(permission),
+    [permissions],
+  );
+
   const value = useMemo(
     () => ({
       user,
+      permissions,
       isAuthenticated: Boolean(user),
-      isAdmin: user?.rol === ADMIN_ROLE,
+      isAdmin: user?.rol === "admin",
+      hasPermission,
       login,
       logout,
     }),
-    [user, login, logout],
+    [user, permissions, hasPermission, login, logout],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

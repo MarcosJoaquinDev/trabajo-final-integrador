@@ -5,8 +5,12 @@ import { WavesIcon } from "../ui/icons";
 import "./Footer.css";
 
 export default function Footer({ links }) {
-  const { user, isAdmin } = useAuth();
-  const visibleLinks = visibleNavLinks(links, user, isAdmin);
+  const { user, hasPermission } = useAuth();
+  const visibleLinks = visibleNavLinks(
+    links,
+    user,
+    hasPermission("acceso_admin"),
+  );
 
   return (
     <footer className="home-footer">

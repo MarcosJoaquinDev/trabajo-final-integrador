@@ -77,9 +77,40 @@ html {
   color: var(--color-huerta-muted);
 }
 
-.huerta .home-nav a:hover {
+.huerta .home-nav a:hover,
+.huerta .home-nav a.is-active {
   background: rgba(63, 107, 74, 0.12);
   color: var(--color-huerta-green-dark);
+}
+
+.huerta .header-menu-toggle {
+  border-color: rgba(63, 107, 74, 0.16);
+  background: rgba(63, 107, 74, 0.1);
+  color: var(--color-huerta-green);
+}
+
+.huerta .header-mobile-nav {
+  background: rgba(251, 250, 243, 0.98);
+  border-top-color: rgba(63, 107, 74, 0.12);
+}
+
+.huerta .header-mobile-nav a {
+  color: var(--color-huerta-muted);
+}
+
+.huerta .header-mobile-nav a:hover,
+.huerta .header-mobile-nav a.is-active {
+  background: rgba(63, 107, 74, 0.12);
+  color: var(--color-huerta-green-dark);
+}
+
+.huerta .header-mobile-logout {
+  color: var(--color-danger);
+}
+
+.huerta .header-mobile-logout:hover {
+  background: rgba(198, 40, 40, 0.1);
+  color: #9e1f1f;
 }
 
 .huerta .btn.btn-primary {

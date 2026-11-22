@@ -24,12 +24,25 @@ Rutas:
 | Ruta | Descripción |
 |---|---|
 | `/`, `/cantina`, `/huerta` | Páginas públicas |
-| `/login`, `/registro`, `/recuperar` | Autenticación |
-| `/admin` | Redirige a `/admin/usuarios` |
-| `/admin/usuarios` | Usuarios y cambio de rol |
-| `/admin/menu` | Editor de la carta |
+| `/login`, `/registro` | Autenticación (solo invitados) |
+| `/recuperar`, `/sin-acceso` | Utilidades |
+| `/admin` | Redirige según el rol del usuario |
+| `/admin/usuarios` | Usuarios y cambio de rol (`ver_usuarios`) |
+| `/admin/menu` | Editor de la carta (`editar_menu`) |
+| `/admin/huerta` | Próximamente (`editar_huerta`) |
 
-`ProtectedRoute` envuelve a `/admin`: sin sesión o sin rol `admin` redirige a `/login` (recordando la ruta intentada). La sesión y los datos del panel se guardan en `localStorage` (`todos-al-agua.auth`, `todos-al-agua.users`, `todos-al-agua.menu`). El menú inicial es una copia de `backend/repositories/data.json`.
+`ProtectedRoute` pide un permiso por ruta. Sin sesión redirige a `/login`; con sesión pero sin permiso, a `/sin-acceso`. `GuestRoute` impide ver `/login` y `/registro` estando logueado. El registro pasa por `/login` conservando la ruta intentada.
+
+Roles y permisos (`src/auth/permissions.js`):
+
+| Rol | Permisos |
+|---|---|
+| `admin` | acceso al panel, ver usuarios, editar menú, editar huerta, cambiar roles |
+| `cantina` | acceso al panel, editar menú |
+| `huerta` | acceso al panel, editar huerta |
+| `usuario` | sin acceso al panel |
+
+La sesión y los datos del panel se guardan en `localStorage` (`todos-al-agua.auth`, `todos-al-agua.users`, `todos-al-agua.menu`). El menú inicial es una copia de `backend/repositories/data.json`.
 
 ## 2. Colores
 

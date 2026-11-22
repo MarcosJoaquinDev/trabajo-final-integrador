@@ -77,9 +77,40 @@ html {
   color: var(--color-cantina-muted);
 }
 
-.cantina .home-nav a:hover {
+.cantina .home-nav a:hover,
+.cantina .home-nav a.is-active {
   background: rgba(184, 92, 56, 0.12);
   color: var(--color-cantina-brown);
+}
+
+.cantina .header-menu-toggle {
+  border-color: rgba(111, 74, 47, 0.16);
+  background: rgba(184, 92, 56, 0.1);
+  color: var(--color-cantina-brown);
+}
+
+.cantina .header-mobile-nav {
+  background: rgba(255, 251, 245, 0.98);
+  border-top-color: rgba(111, 74, 47, 0.12);
+}
+
+.cantina .header-mobile-nav a {
+  color: var(--color-cantina-muted);
+}
+
+.cantina .header-mobile-nav a:hover,
+.cantina .header-mobile-nav a.is-active {
+  background: rgba(184, 92, 56, 0.12);
+  color: var(--color-cantina-brown);
+}
+
+.cantina .header-mobile-logout {
+  color: var(--color-danger);
+}
+
+.cantina .header-mobile-logout:hover {
+  background: rgba(198, 40, 40, 0.1);
+  color: #9e1f1f;
 }
 
 .cantina .btn.btn-primary {

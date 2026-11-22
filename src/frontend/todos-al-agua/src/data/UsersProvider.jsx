@@ -1,14 +1,17 @@
 import { useCallback, useMemo, useState } from "react";
 import { UsersContext } from "./usersContext";
+import { ROLES } from "../auth/permissions";
 
 const STORAGE_KEY = "todos-al-agua.users";
 
 const SEED_USERS = [
-  { id: "u-1", nombre: "María González", email: "admin@todosalagua.com", rol: "admin" },
-  { id: "u-2", nombre: "Carlos Ruiz", email: "carlos.ruiz@gmail.com", rol: "usuario" },
-  { id: "u-3", nombre: "Lucía Fernández", email: "lucia.fernandez@gmail.com", rol: "usuario" },
-  { id: "u-4", nombre: "Diego Martínez", email: "diego.martinez@gmail.com", rol: "admin" },
-  { id: "u-5", nombre: "Ana López", email: "ana.lopez@gmail.com", rol: "usuario" },
+  { id: "u-1", nombre: "María González", email: "admin@todosalagua.com", rol: ROLES.ADMIN },
+  { id: "u-2", nombre: "Carlos Ruiz", email: "carlos.ruiz@gmail.com", rol: ROLES.USUARIO },
+  { id: "u-3", nombre: "Lucía Fernández", email: "lucia.fernandez@gmail.com", rol: ROLES.USUARIO },
+  { id: "u-4", nombre: "Diego Martínez", email: "diego.martinez@gmail.com", rol: ROLES.ADMIN },
+  { id: "u-5", nombre: "Ana López", email: "ana.lopez@gmail.com", rol: ROLES.USUARIO },
+  { id: "u-6", nombre: "Muelle Cantina", email: "cantina@todosalagua.com", rol: ROLES.CANTINA },
+  { id: "u-7", nombre: "Flor de Pan", email: "huerta@todosalagua.com", rol: ROLES.HUERTA },
 ];
 
 function readStoredUsers() {

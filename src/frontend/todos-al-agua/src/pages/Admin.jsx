@@ -5,6 +5,7 @@ import "./Admin.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from "../auth/AuthContext";
+import { PERMISOS } from "../auth/permissions";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -12,8 +13,15 @@ const navLinks = [
   { href: "/huerta", label: "Huerta" },
 ];
 
+const TABS = [
+  { to: "/admin/usuarios", label: "Usuarios", permiso: PERMISOS.VER_USUARIOS },
+  { to: "/admin/menu", label: "Menú", permiso: PERMISOS.EDITAR_MENU },
+  { to: "/admin/huerta", label: "Huerta", permiso: PERMISOS.EDITAR_HUERTA },
+];
+
 export default function Admin() {
-  const { user, logout } = useAuth();
+  const { user, hasPermission } = useAuth();
+  const visibleTabs = TABS.filter((tab) => hasPermission(tab.permiso));
 
   return (
     <div className="cantina admin-page">
@@ -33,28 +41,20 @@ export default function Admin() {
                 Sesión de <strong>{user?.email}</strong>
               </p>
             </div>
-            <button className="btn btn-primary" type="button" onClick={logout}>
-              Cerrar sesión
-            </button>
           </div>
 
           <nav className="admin-tabs" aria-label="Secciones del panel">
-            <NavLink
-              to="/admin/usuarios"
-              className={({ isActive }) =>
-                isActive ? "admin-tab is-active" : "admin-tab"
-              }
-            >
-              Usuarios
-            </NavLink>
-            <NavLink
-              to="/admin/menu"
-              className={({ isActive }) =>
-                isActive ? "admin-tab is-active" : "admin-tab"
-              }
-            >
-              Menú
-            </NavLink>
+            {visibleTabs.map((tab) => (
+              <NavLink
+                key={tab.to}
+                to={tab.to}
+                className={({ isActive }) =>
+                  isActive ? "admin-tab is-active" : "admin-tab"
+                }
+              >
+                {tab.label}
+              </NavLink>
+            ))}
           </nav>
 
           <div className="admin-panel">
