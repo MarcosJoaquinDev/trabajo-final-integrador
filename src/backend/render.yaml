@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: todos-al-agua-backend
+    runtime: node
+    rootDir: src/backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: API_KEY
+        sync: false
+      - key: AUTH_DOMAIN
+        sync: false
+      - key: PROJECT_ID
+        sync: false
+      - key: STORAGE_BUCKET
+        sync: false
+      - key: MESSAGING_SENDER_ID
+        sync: false
+      - key: APP_ID
+        sync: false
+      - key: CANTINA_TOKEN
+        sync: false
+      - key: ROL_ADMIN
+        value: admin
+      - key: FRONTEND_URL
+        sync: false

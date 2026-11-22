@@ -42,7 +42,7 @@ Roles y permisos (`src/auth/permissions.js`):
 | `huerta` | acceso al panel, editar huerta |
 | `usuario` | sin acceso al panel |
 
-La sesión y los datos del panel se guardan en `localStorage` (`todos-al-agua.auth`, `todos-al-agua.users`, `todos-al-agua.menu`). El menú inicial es una copia de `backend/repositories/data.json`.
+La sesión (JWT) se guarda en `localStorage` (`todos-al-agua.token`). El menú y los usuarios se leen de la API del backend (Express + Firebase Firestore), con `localStorage` como fallback si el servidor no está disponible. El cliente HTTP está en `src/api/client.js` y usa `VITE_API_URL` (por defecto `http://localhost:3000`). El menú inicial es una copia de `backend/repositories/data.json`.
 
 ## 2. Colores
 
@@ -74,7 +74,7 @@ Tipografía: Montserrat (`--font-family-base`).
 | `@vitejs/plugin-react`, `@rolldown/plugin-babel`, `babel-plugin-react-compiler` | Transformación JSX y React Compiler |
 | `eslint`, `@eslint/js`, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh` | Lint |
 
-No se usan librerías de UI, estado global externo ni cliente HTTP: el estado son Contexts de React y la persistencia es `localStorage`.
+No se usan librerías de UI ni estado global externo: el estado son Contexts de React. La comunicación con la API se hace con `fetch` nativo en `src/api/client.js`; el token JWT se envía en `Authorization: Bearer`.
 
 ## Instalación y uso
 
@@ -94,4 +94,64 @@ npm run preview   # sirve dist/
 npm run lint      # ESLint
 ```
 
-Para probar el panel: iniciar sesión con `admin@todosalagua.com` (o cualquier email que contenga `admin`) y entrar a `/admin`.
+Para probar el panel: iniciar sesión con `admin@todosalagua.com` / `123456` y entrar a `/admin`.
+
+## Backend (API + Firebase)
+
+Ubicación: `src/backend`. Express + Firebase Firestore + JWT.
+
+```bash
+cd src/backend
+npm install
+cp .env.example .env      # completar con las credenciales de Firebase
+npm run dev               # http://localhost:3000
+node seed.js              # carga menu y usuario admin en Firestore (una vez)
+```
+
+### Variables de entorno (`src/backend/.env`)
+
+```env
+API_KEY=...
+AUTH_DOMAIN=...
+PROJECT_ID=...
+STORAGE_BUCKET=...
+MESSAGING_SENDER_ID=...
+APP_ID=...
+CANTINA_TOKEN=secreto_para_firmar_jwt
+ROL_ADMIN=admin
+PORT=3000
+FRONTEND_URL=http://localhost:5173   # luego, la URL del frontend deployado
+```
+
+### Endpoints principales
+
+- `POST /users/register` — alta de usuario
+- `POST /users/login` — devuelve `{ token }`
+- `GET /users`, `PUT /users/:id`, `DELETE /users/:id` — protegidos con JWT + rol admin
+- `GET /menu`, `GET /menu/:id` — públicos
+- `POST /menu`, `PUT /menu/:id`, `DELETE /menu/:id` y los de ítems — protegidos
+
+## Deploy
+
+### Backend en Render (plan gratuito)
+1. Crear cuenta en **render.com** y conectar el repositorio de GitHub.
+2. *New Web Service* → seleccionar el repo → **Root Directory: `src/backend`**.
+3. Render detecta `render.yaml`: `buildCommand: npm install`, `startCommand: npm start`.
+4. Cargar las variables de entorno del `.env` (todas las del listado anterior).
+5. Copiar la URL que te da Render (ej. `https://todos-al-agua-backend.onrender.com`).
+
+> Render Free se duerme al estar inactivo: el primer request puede tardar ~30 s.
+
+### Frontend en Vercel (plan gratuito)
+1. Crear cuenta en **vercel.com** y conectar el repositorio.
+2. *New Project* → seleccionar el repo → **Root Directory: `src/frontend/todos-al-agua`**.
+3. Framework: Vite (detecta `npm run build` y `dist/`).
+4. Agregar la variable de entorno: `VITE_API_URL = https://TU-BACKEND.onrender.com`.
+5. `vercel.json` ya incluye el rewrite para que las rutas `/admin/...` funcionen al recargar.
+
+### Frontend en Netlify (alternativa)
+- `netlify.toml` ya trae `base`, `command`, `publish` y el redirect SPA.
+- Agregar `VITE_API_URL` en *Site settings → Environment variables*.
+
+### CORS
+En el backend, `FRONTEND_URL` debe ser la URL del frontend deployado (o `*` para pruebas). Sin eso, el navegador bloquea las llamadas.
