@@ -14,8 +14,9 @@ userRouter.get('/', middlewareToken, adminOnly, async (req, res) => {
 
 userRouter.post('/register', async (req, res) => {
     try {
-        const { name, password, email, rol } = req.body;
-        const response = await userController.createUser(name, password, email, rol);
+        const { name, password, email } = req.body;
+        // El rol siempre lo asigna el servidor: alta pública = "usuario".
+        const response = await userController.createUser(name, password, email);
         res.status(201).json(response);
     } catch (e) {
         res.status(e.status || 500).json({ error: e.message });

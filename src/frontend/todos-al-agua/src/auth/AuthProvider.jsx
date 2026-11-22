@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { permisosDeRol, rolDesdeEmail } from "./permissions";
+import { permisosDeRol } from "./permissions";
 import { getToken, setToken, apiAuth } from "../api/client";
 
 function userFromToken(token) {
@@ -29,10 +29,10 @@ export default function AuthProvider({ children }) {
     try {
       const { token } = await apiAuth.login(email, password);
       setToken(token);
-      const nextUser = userFromToken(token) ?? {
-        email,
-        rol: rolDesdeEmail(email),
-      };
+      const nextUser = userFromToken(token);
+      if (!nextUser) {
+        throw new Error("No se pudo leer la sesión del servidor");
+      }
       setUser(nextUser);
       return nextUser;
     } finally {

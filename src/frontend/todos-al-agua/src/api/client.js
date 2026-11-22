@@ -54,10 +54,10 @@ export async function request(path, options = {}) {
 export const apiAuth = {
   login: (email, password) =>
     request("/users/login", { method: "POST", body: { email, password } }),
-  register: (name, email, password, rol = "usuario") =>
+  register: (name, email, password) =>
     request("/users/register", {
       method: "POST",
-      body: { name, email, password, rol },
+      body: { name, email, password },
     }),
 };
 

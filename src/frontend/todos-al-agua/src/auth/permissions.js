@@ -32,20 +32,6 @@ export function permisosDeRol(rol) {
   return PERMISOS_POR_ROL[rol] ?? PERMISOS_POR_ROL[ROLES.USUARIO];
 }
 
-export function rolDesdeEmail(email) {
-  const texto = (email ?? "").toLowerCase();
-  if (texto.includes(ROLES.ADMIN)) {
-    return ROLES.ADMIN;
-  }
-  if (texto.includes(ROLES.CANTINA)) {
-    return ROLES.CANTINA;
-  }
-  if (texto.includes(ROLES.HUERTA)) {
-    return ROLES.HUERTA;
-  }
-  return ROLES.USUARIO;
-}
-
 export function destinoInicial(hasPermission) {
   if (hasPermission(PERMISOS.VER_USUARIOS)) {
     return "/admin/usuarios";
