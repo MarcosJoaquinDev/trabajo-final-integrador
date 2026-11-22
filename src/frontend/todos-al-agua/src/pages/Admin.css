@@ -163,6 +163,10 @@
   line-height: 1.5;
 }
 
+.cantina .admin-help-note {
+  margin-top: 30px;
+}
+
 .admin-table-wrap {
   overflow-x: auto;
 }
