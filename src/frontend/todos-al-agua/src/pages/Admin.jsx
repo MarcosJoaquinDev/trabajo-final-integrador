@@ -17,6 +17,7 @@ const TABS = [
   { to: "/admin/usuarios", label: "Usuarios", permiso: PERMISOS.VER_USUARIOS },
   { to: "/admin/menu", label: "Menú", permiso: PERMISOS.EDITAR_MENU },
   { to: "/admin/huerta", label: "Huerta", permiso: PERMISOS.EDITAR_HUERTA },
+  { to: "/admin/ayuda", label: "Ayuda", permiso: PERMISOS.ACCESO_ADMIN },
 ];
 
 export default function Admin() {

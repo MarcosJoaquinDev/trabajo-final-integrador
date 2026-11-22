@@ -12,7 +12,7 @@ src/
 ├── routes/index.jsx      # rutas públicas + /admin protegido
 ├── pages/                # Home, Cantina, Huerta, Login, Register, Admin
 ├── components/           # secciones de las páginas
-├── components/admin/     # UsersPanel y MenuPanel
+├── components/admin/     # UsersPanel, MenuPanel, HuertaPanel y AyudaPanel
 ├── ui/                   # Button, Logo, SectionHeading, icons, etc.
 ├── auth/                 # sesión simulada (Context + Provider)
 ├── data/                 # menu.json + Providers de usuarios y menú
@@ -30,6 +30,7 @@ Rutas:
 | `/admin/usuarios` | Usuarios y cambio de rol (`ver_usuarios`) |
 | `/admin/menu` | Editor de la carta (`editar_menu`) |
 | `/admin/huerta` | Próximamente (`editar_huerta`) |
+| `/admin/ayuda` | Enlace a la guía de administrador (`acceso_admin`) |
 
 `ProtectedRoute` pide un permiso por ruta. Sin sesión redirige a `/login`; con sesión pero sin permiso, a `/sin-acceso`. `GuestRoute` impide ver `/login` y `/registro` estando logueado. El registro pasa por `/login` conservando la ruta intentada.
 
@@ -95,3 +96,8 @@ npm run lint      # ESLint
 ```
 
 Para probar el panel: iniciar sesión con `admin@todosalagua.com` (o cualquier email que contenga `admin`) y entrar a `/admin`.
+
+La solapa **Ayuda** del panel enlaza con el proyecto independiente `guia-admin`.
+Por defecto apunta a `http://localhost:5174`; para publicar el frontend con el
+enlace correcto, copiá `.env.example` a `.env` y configurá
+`VITE_GUIA_ADMIN_URL` con la URL de la guía en Netlify.
