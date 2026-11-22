@@ -1,6 +1,9 @@
 # Todos al Agua — Frontend
 
-SPA de la asociación Todos al Agua Necochea: carta de la cantina, huerta, autenticación simulada y panel de administración.
+SPA de la asociación Todos al Agua Necochea: carta de la cantina, huerta, autenticación con JWT y panel de administración.
+
+**Demo deployada:** https://trabajo-final-integrador-self.vercel.app
+**API:** https://todos-al-agua-backend.onrender.com
 
 ## 1. Arquitectura
 
@@ -14,7 +17,7 @@ src/
 ├── components/           # secciones de las páginas
 ├── components/admin/     # UsersPanel y MenuPanel
 ├── ui/                   # Button, Logo, SectionHeading, icons, etc.
-├── auth/                 # sesión simulada (Context + Provider)
+├── auth/                 # sesión con JWT (Context + Provider)
 ├── data/                 # menu.json + Providers de usuarios y menú
 └── theme.css             # tokens de color y tipografía
 ```
@@ -95,6 +98,11 @@ npm run lint      # ESLint
 ```
 
 Para probar el panel: iniciar sesión con `admin@todosalagua.com` / `123456` y entrar a `/admin`.
+
+### Credenciales de prueba (demo deployada)
+
+- **Admin:** `admin@todosalagua.com` / `123456` (acceso total)
+- El resto de los usuarios se crean desde `POST /users/register` o con el script `node seed.js` del backend.
 
 ## Backend (API + Firebase)
 
