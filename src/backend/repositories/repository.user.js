@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 class User {
   constructor() {
-    this.db = admin.firestore();
+    this.db = admin;
     this.collection = this.db.collection('users');
   }
 
@@ -19,11 +19,11 @@ class User {
     return users;
   }
 
-  async create({ email, pass, nombre, rol }) {
+  async create({ email, pass, name, nombre, rol }) {
     const userData = {
       email,
       pass,
-      nombre,
+      name: name ?? nombre,
       rol,
     };
     const docRef = await this.collection.add(userData);
@@ -35,8 +35,7 @@ class User {
   }
 
   static async getByEmail(email) {
-    const db = admin.firestore();
-    const snapshot = await db
+    const snapshot = await admin
       .collection('users')
       .where('email', '==', email)
       .limit(1)

@@ -55,46 +55,30 @@ async function deleteUserById(id){
 }
 
 async function findByEmail(email){
-    const isFound = User.getByEmail(email);
-    return isFound;
+    return await User.getByEmail(email);
 }
 
 async function createUser(name,password,email,rol){
-    const emailFound = findByEmail(email);
+    const emailFound = await findByEmail(email);
     if (emailFound) {
-        return new Error("Ya hay un registro con este email");
+        const error = new Error("Ya hay un registro con este email");
+        error.status = 409;
+        throw error;
     }
 
-    const encryptedPass = encryptWord(password);
-    const userRepository = new User();
-    try {
-        const data = {name,email,encryptedPass,rol};
-        const responseFirebase = await userRepository.create(data);
-        return responseFirebase;
-    } catch (e) {
-        return e.message;
-    }
+    const pass = await encryptWord(password);
+    return await new User().create({ name, email, pass, rol });
 }
 
-async function verifyUser(email,password) {
-    const emailFound = findByEmail(email);
-
-    const userRepository = new User();
-    const passwordHashed = encryptWord(password);
-
+async function verifyUser(email, password) {
     try {
-        const dataUser = await userRepository.login(email,passwordHashed);
-        if(dataUser.id){
-            return jwt.sign(
-                dataUser,
-                process.env.CANTINA_TOKEN
-            )
+        const dataUser = await new User().login(email, password);
+        if (!dataUser) {
+            return new Error("El email o contraseña son incorrectos");
         }
+        return jwt.sign(dataUser, process.env.CANTINA_TOKEN);
     } catch (e) {
-        return e.message;
-    }
-    if (!dataUser || !emailFound) {
-        return new Error("El email o contraseña son incorrectas");
+        return new Error(e.message);
     }
 }
 
@@ -105,6 +89,7 @@ async function encryptWord(pass) {
 
 module.exports = {
     createUser,
+    verifyUser,
     getAllUsers,
     getUserById,
     updateUserById,

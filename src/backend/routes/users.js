@@ -13,15 +13,26 @@ userRouter.get('/', middlewareToken, adminOnly, async (req, res) => {
 })
 
 userRouter.post('/register', async (req, res) => {
-    const { name,password,email,rol } = req.body;
-    const response = await userController.createUser(name,password,email,rol);
-    res.json(response);
+    try {
+        const { name, password, email, rol } = req.body;
+        const response = await userController.createUser(name, password, email, rol);
+        res.status(201).json(response);
+    } catch (e) {
+        res.status(e.status || 500).json({ error: e.message });
+    }
 })
 
-userRouter.get('/login', async (req, res) => {
-    const { password,email } = req.body;
-    const token = await userController.loginUser(password,email);
-    res.json(token);
+userRouter.post('/login', async (req, res) => {
+    try {
+        const { password, email } = req.body;
+        const token = await userController.verifyUser(email, password);
+        if (token instanceof Error) {
+            return res.status(401).json({ error: token.message });
+        }
+        res.json({ token });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
 })
 
 userRouter.get('/:id', middlewareToken, adminOnly, async (req, res) => {
