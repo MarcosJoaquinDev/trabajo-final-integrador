@@ -1,8 +1,11 @@
 import Button from "../../ui/Button";
 
-// En desarrollo apunta al proyecto `guia-admin` (puerto 5174).
-// En producción se configura con VITE_GUIA_ADMIN_URL.
-const GUIA_URL = import.meta.env.VITE_GUIA_ADMIN_URL || "http://localhost:5174";
+// URL publicada de la guía (proyecto H:\guia-todos-al-agua).
+// Se puede override con VITE_GUIA_ADMIN_URL
+// (por ejemplo, para apuntar al proyecto local en el puerto 5174).
+const GUIA_URL =
+  import.meta.env.VITE_GUIA_ADMIN_URL ||
+  "https://guia-de-usuario-administrador.netlify.app";
 
 export default function AyudaPanel() {
   return (
