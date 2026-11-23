@@ -97,7 +97,7 @@ npm run lint      # ESLint
 
 Para probar el panel: iniciar sesión con `admin@todosalagua.com` (o cualquier email que contenga `admin`) y entrar a `/admin`.
 
-La solapa **Ayuda** del panel enlaza con el proyecto independiente `guia-admin`.
+La solapa **Ayuda** del panel enlaza con el proyecto independiente `guia-todos-al-agua` (en `H:\guia-todos-al-agua`).
 Por defecto apunta a `https://guia-de-usuario-administrador.netlify.app`. Si
 querés probar la guía local, copiá `.env.example` a `.env` y configurá
 `VITE_GUIA_ADMIN_URL=http://localhost:5174`.

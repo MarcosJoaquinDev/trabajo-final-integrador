@@ -1,6 +1,7 @@
 import Button from "../../ui/Button";
 
-// URL publicada de la guía. Se puede override con VITE_GUIA_ADMIN_URL
+// URL publicada de la guía (proyecto H:\guia-todos-al-agua).
+// Se puede override con VITE_GUIA_ADMIN_URL
 // (por ejemplo, para apuntar al proyecto local en el puerto 5174).
 const GUIA_URL =
   import.meta.env.VITE_GUIA_ADMIN_URL ||
